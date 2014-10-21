@@ -10,7 +10,10 @@ var io = require('socket.io')(http, {transports: 'websocket'});
 
 var nsp_app = io.of('/app');
 
-io.adapter(redis(redisURL));
+var redisConnection = {hostname: redisURL.hostname, protocol: redisURL.protocol, auth: redisURL.auth};
+console.log(redisConnection);
+
+io.adapter(redis(redisConnection, redisURL.port));
 
 var connections = 0;
 
@@ -21,7 +24,6 @@ nsp_app.on('connection', function(socket){
     socket.on('disconnect', function() {
         connections --;
         console.log('User disconnected', connections);
-        clearInterval(interval2);
     });
 
 });
