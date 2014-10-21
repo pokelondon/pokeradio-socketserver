@@ -4,6 +4,7 @@ var redisURL = url.parse(process.env.REDISCLOUD_URL);
 var PORT = (process.env.PORT || 8080);
 
 var redis = require('socket.io-redis');
+//var redis = requrie('redis')
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http, {transports: 'websocket'});
@@ -12,6 +13,7 @@ var nsp_app = io.of('/app');
 
 // Have to remove the port from host
 redisURL.host = redisURL.hostname;
+redisURL.password = redisURL.auth.split(':')[1];
 
 io.adapter(redis(redisURL));
 
