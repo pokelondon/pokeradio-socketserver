@@ -1,5 +1,4 @@
 var url = require('url');
-var redisURL = url.parse(process.env.REDISCLOUD_URL || 'redis://localhost:6380/0');
 
 var PORT = (process.env.PORT || 8080);
 
@@ -10,10 +9,7 @@ var io = require('socket.io')(http, {transports: 'websocket'});
 
 var nsp_app = io.of('/app');
 
-var redisConnection = {hostname: redisURL.hostname, protocol: redisURL.protocol, auth: redisURL.auth};
-console.log(redisConnection);
-
-io.adapter(redis(redisConnection, redisURL.port));
+io.adapter(redis(process.env.REDISCLOUD_URL));
 
 var connections = 0;
 
