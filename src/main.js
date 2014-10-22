@@ -1,5 +1,5 @@
 var url = require('url');
-var redisURL = url.parse(process.env.REDISCLOUD_URL);
+var redisURL = url.parse(process.env.REDISCLOUD_URL || 'redis://localhost:6379/1');
 
 var PORT = (process.env.PORT || 8080);
 
@@ -11,12 +11,16 @@ var io = require('socket.io')(http, {transports: 'websocket'});
 
 var nsp_app = io.of('/app');
 
-redisURL.password = redisURL.auth.split(':')[1];
+if(redisURL.auth) {
+    redisURL.password = redisURL.auth.split(':')[1];
 
-var pub = redis.createClient(redisURL.port, redisURL.hostname, {auth_pass: redisURL.password});
-var sub = redis.createClient(redisURL.port, redisURL.hostname, {auth_pass: redisURL.password, detect_buffers: true});
+    var pub = redis.createClient(redisURL.port, redisURL.hostname, {auth_pass: redisURL.password});
+    var sub = redis.createClient(redisURL.port, redisURL.hostname, {auth_pass: redisURL.password, detect_buffers: true});
 
-io.adapter(redisAdapter({pubClient: pub, subClient: sub}));
+    io.adapter(redisAdapter({pubClient: pub, subClient: sub}));
+} else {
+    io.adapter(redisAdapter(redisURL.hostname, redisURL.port));
+}
 
 var connections = 0;
 
