@@ -11,7 +11,7 @@ You will need:
 
 ###Check out:
 ```sh
-$ git checkout http://github.com/pokelondon/pokeradio-socketserver
+$ git clone http://github.com/pokelondon/pokeradio-socketserver
 $ cd pokeradio-socketserver
 ```
 
