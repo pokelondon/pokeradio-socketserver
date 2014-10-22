@@ -1,8 +1,13 @@
 # pokeradio-socketserver
 
-This is a Node.JS server that connects Redis PubSub events from the PokeRadio app to users' browsers, via Socket.IO.
+This is a Node.JS server that connects Redis PubSub events from the [PokeRadio app](https://github.com/pokelondon/pokeradio) to users' browsers, via Socket.IO.
 
 The idea is that the main (Django) web app runs as another Heroku app, and shares the Redis addon to which it publishes events.
+
+##Also in this family:
+- [PokeRadio app](https://github.com/pokelondon/pokeradio)
+- [PokeRadio Socket Server](https://github.com/pokelondon/pokeradio-socketserver) This!
+- [PokeRadio Mopidy Client](https://github.com/pokelondon/pokeradio-mopidy)
 
 ## Running Locally
 You will need:
