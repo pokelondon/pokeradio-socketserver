@@ -6,7 +6,7 @@ The idea is that the main (Django) web app runs as another Heroku app, and share
 
 ##Also in this family:
 - [PokeRadio app](https://github.com/pokelondon/pokeradio)
-- [PokeRadio Socket Server](https://github.com/pokelondon/pokeradio-socketserver) This!
+- [**PokeRadio Socket Server**](https://github.com/pokelondon/pokeradio-socketserver) ☜ This!
 - [PokeRadio Mopidy Client](https://github.com/pokelondon/pokeradio-mopidy)
 
 ## Running Locally
