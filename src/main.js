@@ -3,19 +3,20 @@ var redisURL = url.parse(process.env.REDISCLOUD_URL);
 
 var PORT = (process.env.PORT || 8080);
 
-var redis = require('socket.io-redis');
-//var redis = requrie('redis')
+var redisAdapter = require('socket.io-redis');
+var redis = require('redis')
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http, {transports: 'websocket'});
 
 var nsp_app = io.of('/app');
 
-// Have to remove the port from host
-redisURL.host = redisURL.hostname;
 redisURL.password = redisURL.auth.split(':')[1];
 
-io.adapter(redis(redisURL));
+var pub = redis.createClient(redisURL.port, redisURL.hostname, {auth_pass: redisURL.password});
+var sub = redis.createClient(redisURL.port, redisURL.hostname, {auth_pass: redisURL.password, detect_buffers: true});
+
+io.adapter(redisAdapter({pubClient: pub, subClient: sub}));
 
 var connections = 0;
 
