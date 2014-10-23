@@ -23,7 +23,8 @@ $ cd pokeradio-socketserver
 ###Redis Server:
 You can get a local Redis server running with homebrew if you don't have one:
 ```sh
-$ brew install redis-server
+$ brew install redis
+$ redis-server /usr/local/etc/redis.conf
 ```
 ###Set Config (optional):
 
