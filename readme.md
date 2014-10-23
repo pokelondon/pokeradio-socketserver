@@ -32,7 +32,10 @@ If you want to connect to a Redis server other than localhost, you will need to 
 $ mv example.env .env && vim .env
 $ source .env
 ```
-
+###Install Node dependencies
+```sh
+$ npm install
+```
 ###Run it
 ```sh
 $ npm start
