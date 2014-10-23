@@ -13,17 +13,21 @@ The idea is that the main (Django) web app runs as another Heroku app, and share
 You will need:
 - Node
 - NPM
+- Redis Server
 
 ###Check out:
 ```sh
 $ git clone http://github.com/pokelondon/pokeradio-socketserver
 $ cd pokeradio-socketserver
 ```
-
+###Redis Server:
+You can get a local Redis server running with homebrew if you don't have one:
+```sh
+$ brew install redis-server
+```
 ###Set Config (optional):
-Unless you want to connect to a Redis server on localhost, you will need to configure it's location.
 
-To do this rename example env file, and edit it to reference your (non local) Redis server; otherwise don't bother.
+If you want to connect to a Redis server other than localhost, you will need to configure it's location. To do this rename example env file, and edit it to reference your (non local) Redis server; otherwise don't bother.
 ```sh
 $ mv example.env .env && vim .env
 $ source .env
