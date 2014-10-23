@@ -28,7 +28,7 @@ $ redis-server /usr/local/etc/redis.conf
 ```
 ###Set Config (optional):
 
-If you want to connect to a Redis server other than localhost, you will need to configure it's location. To do this rename example env file, and edit it to reference your (non local) Redis server; otherwise don't bother.
+If you want to connect to a Redis server other than localhost, you will need to configure its location. To do this rename example env file, and edit it to reference your (non local) Redis server; otherwise don't bother.
 ```sh
 $ mv example.env .env && vim .env
 $ source .env
